@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L.A.B SPACE — 3 месяца в подарок</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --purple:#860BC9;--pink:#FE0CF6;
+  --grad:linear-gradient(135deg,#860BC9,#FE0CF6);
+  --dark:rgb(20,20,23);--card-dark:rgb(41,42,46);
+  --light:rgb(245,245,247);--gray:#B3B3B3;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;color:#fff;background:var(--dark);}
+img{max-width:100%;display:block;}
+.container{max-width:1280px;margin:0 auto;padding:0 80px;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;width:100%;height:80px;background:rgba(33,34,38,0.92);z-index:100;display:flex;align-items:center;border-bottom:2px solid;border-image:var(--grad) 1;}
+.nav-inner{display:flex;align-items:center;width:100%;max-width:1440px;margin:0 auto;padding:0 40px;}
+.nav-logo img{height:50px;}
+.nav-links{display:flex;gap:28px;margin-left:40px;flex:1;}
+.nav-links a{color:#F1EAE2;text-decoration:none;font-size:14px;font-weight:500;white-space:nowrap;}
+.nav-links a:hover{color:var(--pink);}
+.nav-phone{font-size:14px;font-weight:600;color:#fff;white-space:nowrap;text-decoration:none;}
+.burger{display:none;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(20,20,23,0.97);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:#fff;font-size:20px;text-decoration:none;font-weight:500;}
+.mobile-menu .close-btn{position:absolute;top:24px;right:24px;background:none;border:none;color:#fff;font-size:32px;cursor:pointer;}
+
+/* HERO */
+.hero{position:relative;width:100%;min-height:900px;background:url('img/hero-bg.png') center/cover no-repeat;display:flex;align-items:center;padding-top:80px;overflow:hidden;}
+.hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.6);}
+.hero-glow{position:absolute;left:-100px;bottom:50px;width:500px;height:500px;background:rgba(134,11,201,0.15);border-radius:50%;filter:blur(80px);}
+.hero-line{position:absolute;left:100px;top:240px;width:5px;height:250px;background:var(--grad);border-radius:3px;}
+.hero-inner{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;width:100%;max-width:1440px;margin:0 auto;padding:60px 80px 40px;}
+.hero-left{max-width:550px;}
+.hero-logo-img{height:55px;margin-bottom:30px;}
+.hero-badge{display:inline-block;padding:6px 28px;background:var(--grad);border-radius:15px;font-size:13px;font-weight:700;color:#fff;margin-bottom:24px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:86px;line-height:0.95;color:#fff;margin-bottom:24px;}
+.hero-subtitle{font-size:19px;font-weight:500;color:rgba(255,255,255,0.8);margin-bottom:32px;line-height:1.5;}
+.hero-btn{display:block;width:300px;text-align:center;border-radius:22px;font-size:14px;font-weight:500;text-decoration:none;margin-bottom:12px;cursor:pointer;border:none;}
+.hero-btn.ghost{background:rgba(255,255,255,0.08);color:#fff;padding:12px 0;}
+.hero-btn.grad{background:var(--grad);color:#fff;padding:16px 0;border-radius:27px;font-weight:700;font-size:14px;}
+.hero-stats{display:flex;gap:100px;margin-top:48px;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--pink);}
+.stat-label{font-size:12px;color:var(--gray);margin-top:2px;}
+
+/* PROMO CARD */
+.promo-card{width:380px;background:rgba(255,255,255,0.08);border-radius:24px;padding:32px;flex-shrink:0;backdrop-filter:blur(10px);}
+.promo-top{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.promo-top img{width:60px;height:60px;}
+.promo-top span{font-size:13px;font-weight:700;color:var(--pink);}
+.promo-title{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;color:#fff;margin-bottom:8px;}
+.promo-months{font-size:18px;color:var(--gray);margin-bottom:16px;}
+.promo-sep{width:100%;height:1px;background:rgba(255,255,255,0.15);margin-bottom:20px;}
+.promo-desc{font-size:15px;color:rgba(255,255,255,0.8);line-height:1.5;margin-bottom:28px;}
+.promo-btn{display:block;width:100%;padding:14px;text-align:center;background:var(--grad);border-radius:24px;color:#fff;font-weight:700;font-size:14px;text-decoration:none;border:none;cursor:pointer;}
+
+/* WHY SECTION */
+.why{background:var(--light);padding:60px 0 80px;}
+.why .section-title{font-family:'Bebas Neue',sans-serif;font-size:52px;color:rgb(26,26,31);}
+.section-line{width:120px;height:4px;background:var(--grad);border-radius:2px;margin:0 0 32px;}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;}
+.why-card{background:#fff;border-radius:16px;padding:24px;position:relative;min-height:220px;overflow:hidden;}
+.why-card::before{content:'';position:absolute;left:0;top:28px;width:4px;height:50px;background:var(--grad);border-radius:0 2px 2px 0;}
+.why-num{font-size:36px;font-weight:700;color:var(--pink);}
+.why-icon{position:absolute;top:20px;right:24px;width:70px;height:70px;}
+.why-card-title{font-size:18px;font-weight:700;color:rgb(26,26,31);margin-top:24px;}
+.why-card-desc{font-size:14px;color:rgb(102,102,107);margin-top:12px;line-height:1.5;}
+
+/* STUDIOS */
+.studios{background:var(--dark);padding:60px 0 80px;overflow:hidden;position:relative;}
+.studios .section-title{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#fff;}
+.studios-sub{font-size:16px;color:var(--gray);margin-bottom:32px;}
+.studio-gallery{display:grid;grid-template-columns:735fr 514fr;grid-template-rows:196px 196px;gap:9px;margin-bottom:48px;}
+.gallery-big{grid-row:1/3;position:relative;border-radius:20px;overflow:hidden;}
+.gallery-big img{width:100%;height:100%;object-fit:cover;}
+.gallery-small{position:relative;border-radius:20px;overflow:hidden;}
+.gallery-small img{width:100%;height:100%;object-fit:cover;}
+.gallery-label-wrap{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.7);border-radius:17px;padding:8px 16px;}
+.gallery-label{font-size:13px;font-weight:600;color:#fff;}
+.gallery-overlay{position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(transparent,rgba(0,0,0,0.6));pointer-events:none;}
+
+/* CAROUSEL */
+.carousel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.carousel-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;}
+.carousel-controls{display:flex;align-items:center;gap:12px;}
+.carousel-counter{font-size:13px;font-weight:500;color:#fff;}
+.carousel-arrow{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;font-size:20px;cursor:pointer;color:#fff;transition:opacity .2s;}
+.carousel-arrow.prev{background:rgba(255,255,255,0.1);}
+.carousel-arrow.next{background:var(--grad);}
+.carousel-arrow:hover{opacity:0.8;}
+.carousel-viewport{overflow:hidden;margin-bottom:24px;}
+.carousel-track{display:flex;gap:20px;transition:transform .4s ease;}
+.studio-card{flex:0 0 300px;background:var(--card-dark);border-radius:20px;overflow:hidden;}
+.studio-card-photo{width:100%;height:180px;object-fit:cover;display:block;}
+.studio-card-info{padding:16px 22px 20px;}
+.studio-card-name{font-size:19px;font-weight:700;margin-bottom:6px;}
+.studio-card-addr{font-size:13px;color:var(--gray);margin-bottom:12px;}
+.metro-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:14px;background:var(--pink);font-size:12px;font-weight:600;color:#fff;margin-bottom:14px;}
+.studio-sep{width:100%;height:1px;background:rgba(255,255,255,0.15);margin-bottom:14px;}
+.studio-card-btn{display:block;width:100%;padding:10px;border-radius:20px;text-align:center;background:var(--grad);color:#fff;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;border:none;}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-bottom:28px;}
+.dot{height:8px;border-radius:4px;cursor:pointer;transition:all .2s;}
+.dot.active{width:28px;background:var(--grad);}
+.dot:not(.active){width:8px;background:rgba(255,255,255,0.3);}
+.studios-buttons{display:flex;justify-content:center;gap:16px;}
+.btn-grad{padding:16px 40px;background:var(--grad);border-radius:26px;color:#fff;font-size:14px;font-weight:700;text-decoration:none;border:none;cursor:pointer;}
+.btn-outline{padding:16px 40px;background:rgba(255,255,255,0.08);border-radius:26px;color:#fff;font-size:14px;font-weight:700;text-decoration:none;border:none;cursor:pointer;}
+
+/* TRAINERS */
+.trainers{background:var(--dark);padding:60px 0 80px;}
+.trainers .section-title{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#fff;}
+.trainers-sub{font-size:15px;color:var(--gray);margin-bottom:36px;}
+.trainers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.trainer-card{background:var(--card-dark);border-radius:16px;padding:28px 20px;text-align:center;}
+.trainer-avatar{width:130px;height:130px;border-radius:50%;margin:0 auto 20px;border:3px solid var(--pink);overflow:hidden;}
+.trainer-avatar img{width:100%;height:100%;object-fit:cover;}
+.trainer-name{font-size:17px;font-weight:700;margin-bottom:6px;}
+.trainer-spec{font-size:13px;font-weight:500;color:var(--pink);margin-bottom:12px;}
+.trainer-desc{font-size:12px;color:var(--gray);line-height:1.5;margin-bottom:16px;}
+.trainer-link{font-size:13px;font-weight:600;color:var(--pink);text-decoration:none;}
+
+/* REVIEWS */
+.reviews{background:var(--light);padding:60px 0 80px;}
+.reviews .section-title{font-family:'Bebas Neue',sans-serif;font-size:52px;color:rgb(33,34,38);}
+.reviews-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px;}
+.review-card{background:#fff;border-radius:20px;padding:28px 24px;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.review-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
+.review-stars{font-size:14px;color:var(--pink);margin-bottom:16px;}
+.review-text{font-size:13px;color:rgb(51,51,56);line-height:1.6;margin-bottom:24px;}
+.review-author{display:flex;align-items:center;gap:12px;margin-top:auto;}
+.review-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--pink);}
+.review-avatar img{width:100%;height:100%;object-fit:cover;}
+.review-author-info{display:flex;flex-direction:column;justify-content:center;}
+.review-name{font-size:13px;font-weight:600;color:rgb(33,34,38);line-height:1.3;}
+.review-date{font-size:11px;color:rgb(128,128,128);line-height:1.3;}
+
+/* FORM */
+.form-section{background:rgb(33,34,38);padding:70px 0;position:relative;overflow:hidden;}
+.form-glow{position:absolute;left:-80px;top:0;width:600px;height:600px;background:rgba(134,11,201,0.12);border-radius:50%;filter:blur(100px);}
+.form-watermark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:332px;opacity:0.06;pointer-events:none;}
+.form-inner{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:60px;}
+.form-left{flex:1;}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:58px;line-height:1;color:#fff;margin-bottom:24px;}
+.form-subtitle{font-size:15px;color:var(--gray);line-height:1.6;margin-bottom:32px;}
+.form-price{font-family:'Bebas Neue',sans-serif;font-size:44px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.form-card{width:520px;background:#fff;border-radius:24px;padding:36px;flex-shrink:0;}
+.form-card h3{font-size:22px;font-weight:700;color:rgb(33,34,38);margin-bottom:20px;}
+.form-input{width:100%;height:50px;background:var(--light);border:none;border-radius:12px;padding:0 16px;font-family:'Montserrat',sans-serif;font-size:14px;color:rgb(33,34,38);margin-bottom:16px;outline:none;}
+.form-input::placeholder{color:rgb(128,128,128);}
+.form-select{width:100%;height:50px;background:var(--light);border:none;border-radius:12px;padding:0 16px;font-family:'Montserrat',sans-serif;font-size:14px;color:rgb(128,128,128);margin-bottom:24px;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23808080' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer;}
+.form-submit{width:100%;height:54px;background:var(--grad);border:none;border-radius:27px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;cursor:pointer;transition:opacity .2s;}
+.form-submit:hover{opacity:0.9;}
+
+/* FOOTER */
+.footer{background:rgb(15,15,18);padding:36px 0 24px;border-top:2px solid;border-image:var(--grad) 1;}
+.footer-inner{display:grid;grid-template-columns:200px 1fr 1fr 1fr auto;gap:40px;margin-bottom:40px;}
+.footer-brand .footer-logo{height:26px;margin-bottom:14px;}
+.footer-brand p{font-size:13px;color:var(--gray);line-height:1.5;}
+.footer-col h4{font-size:14px;font-weight:700;margin-bottom:14px;}
+.footer-col ul{list-style:none;}
+.footer-col li{font-size:12px;color:var(--gray);margin-bottom:6px;}
+.footer-col li a{color:var(--gray);text-decoration:none;}
+.footer-social a{color:var(--pink);font-size:13px;font-weight:500;text-decoration:none;margin-right:16px;}
+.footer-bottom{font-size:11px;color:rgb(128,128,128);border-top:1px solid rgba(255,255,255,0.05);padding-top:20px;}
+
+/* MOBILE */
+@media(max-width:768px){
+  .container{padding:0 20px;}
+  .nav-inner{padding:0 16px;}
+  .nav-links,.nav-phone{display:none;}
+  .burger{display:block;margin-left:auto;}
+  .nav-logo img{height:36px;}
+
+  .hero{min-height:auto;padding-top:80px;padding-bottom:40px;}
+  .hero-inner{flex-direction:column;padding:40px 20px;}
+  .hero-left{max-width:100%;}
+  .hero-line{display:none;}
+  .hero-title{font-size:52px;}
+  .hero-subtitle{font-size:16px;}
+  .hero-btn{width:100%;}
+  .hero-stats{gap:40px;margin-top:32px;}
+  .promo-card{width:100%;margin-top:32px;}
+  .promo-title{font-size:40px;}
+
+  .why{padding:40px 0 60px;}
+  .why .section-title{font-size:36px;}
+  .why-grid{grid-template-columns:1fr;}
+  .why-card{min-height:auto;}
+
+  .studios{padding:40px 0 60px;}
+  .studios .section-title{font-size:36px;}
+  .studio-gallery{grid-template-columns:1fr;grid-template-rows:auto;}
+  .gallery-big{grid-row:auto;height:240px;}
+  .gallery-small{height:180px;}
+  .carousel-header{flex-wrap:wrap;gap:12px;}
+  .carousel-title{font-size:22px;}
+  .carousel-viewport{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .carousel-viewport::-webkit-scrollbar{display:none;}
+  .carousel-track{transition:none !important;}
+  .studio-card{flex:0 0 260px;}
+  .carousel-arrow{display:none;}
+  .studios-buttons{flex-direction:column;align-items:center;}
+
+  .trainers{padding:40px 0 60px;}
+  .trainers .section-title{font-size:36px;}
+  .trainers-grid{grid-template-columns:1fr 1fr;gap:16px;}
+
+  .reviews{padding:40px 0 60px;}
+  .reviews .section-title{font-size:32px;}
+  .reviews-grid{grid-template-columns:1fr;gap:16px;}
+
+  .form-section{padding:40px 0;}
+  .form-inner{flex-direction:column;}
+  .form-title{font-size:40px;}
+  .form-card{width:100%;}
+
+  .footer-inner{grid-template-columns:1fr;gap:24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="img/nav-logo.png" alt="L.A.B SPACE"></a>
+    <div class="nav-links">
+      <a href="#">Пробная тренировка</a>
+      <a href="#">Направления</a>
+      <a href="#">Расписание</a>
+      <a href="#">Цены и абонементы</a>
+      <a href="#">Акции</a>
+      <a href="#">Франшиза</a>
+    </div>
+    <a href="tel:+74954199754" class="nav-phone">+7 495 419-97-54</a>
+    <button class="burger" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="closeMenu()">✕</button>
+  <a href="#" onclick="closeMenu()">Пробная тренировка</a>
+  <a href="#why" onclick="closeMenu()">Преимущества</a>
+  <a href="#studios" onclick="closeMenu()">Студии</a>
+  <a href="#trainers" onclick="closeMenu()">Тренеры</a>
+  <a href="#form" onclick="closeMenu()">Контакты</a>
+  <a href="tel:+74954199754" style="color:var(--pink)">+7 495 419-97-54</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <img src="img/hero-logo.png" alt="L.A.B SPACE" class="hero-logo-img">
+      <div class="hero-badge">АКЦИЯ</div>
+      <h1 class="hero-title">3 МЕСЯЦА<br>В ПОДАРОК</h1>
+      <p class="hero-subtitle">При покупке абонемента<br>на 12 месяцев</p>
+      <a href="#" class="hero-btn ghost">Пробная тренировка — от 500 ₽</a>
+      <a href="#form" class="hero-btn grad">ЗАПИСАТЬСЯ НА ПРОБНОЕ</a>
+      <a href="#" class="hero-btn ghost">КУПИТЬ АБОНЕМЕНТ</a>
+      <div class="hero-stats">
+        <div><div class="stat-num">25+</div><div class="stat-label">студий</div></div>
+        <div><div class="stat-num">16+</div><div class="stat-label">направлений</div></div>
+        <div><div class="stat-num">100+</div><div class="stat-label">тренеров</div></div>
+      </div>
+    </div>
+    <div class="promo-card">
+      <div class="promo-top">
+        <img src="img/promo-logo.png" alt="">
+        <span>АКЦИЯ</span>
+      </div>
+      <div class="promo-title">АБОНЕМЕНТ<br>12 + 3</div>
+      <div class="promo-months">месяцев</div>
+      <div class="promo-sep"></div>
+      <p class="promo-desc">12 месяцев по цене обычного<br>абонемента + 3 месяца бесплатно</p>
+      <button class="promo-btn">ПОДРОБНЕЕ</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-title">ПОЧЕМУ L.A.B SPACE</div>
+    <div class="section-line"></div>
+    <div class="why-grid" id="whyGrid"></div>
+  </div>
+</section>
+
+<!-- STUDIOS -->
+<section class="studios" id="studios">
+  <div class="container">
+    <div class="section-title">НАШИ СТУДИИ</div>
+    <div class="section-line"></div>
+    <div class="studios-sub">25+ современных фитнес-пространств в лучших локациях Москвы</div>
+
+    <div class="studio-gallery">
+      <div class="gallery-big">
+        <img src="img/gallery-big.png" alt="Зал тренировок">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-label-wrap"><span class="gallery-label">Зал тренировок</span></div>
+      </div>
+      <div class="gallery-small">
+        <img src="img/gallery-tr.png" alt="Зал групповых программ">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-label-wrap"><span class="gallery-label">Зал групповых программ</span></div>
+      </div>
+      <div class="gallery-small">
+        <img src="img/gallery-br.png" alt="Зона растяжки">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-label-wrap"><span class="gallery-label">Зона растяжки</span></div>
+      </div>
+    </div>
+
+    <div class="carousel-header">
+      <div class="carousel-title">ВЫБЕРИТЕ БЛИЖАЙШУЮ СТУДИЮ</div>
+      <div class="carousel-controls">
+        <span class="carousel-counter" id="carouselCounter">1 / 3</span>
+        <button class="carousel-arrow prev" onclick="slideCarousel(-1)">←</button>
+        <button class="carousel-arrow next" onclick="slideCarousel(1)">→</button>
+      </div>
+    </div>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="cardsTrack"></div>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+    <div class="studios-buttons">
+      <button class="btn-grad">ВСЕ 25+ СТУДИЙ</button>
+      <button class="btn-outline">ПОКАЗАТЬ НА КАРТЕ</button>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINERS -->
+<section class="trainers" id="trainers">
+  <div class="container">
+    <div class="section-title">НАША КОМАНДА</div>
+    <p class="trainers-sub">Квалифицированные тренеры с МС / КМС и профильным образованием</p>
+    <div class="trainers-grid" id="trainersGrid"></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-title">ОТЗЫВЫ НАШИХ КЛИЕНТОВ</div>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="form">
+  <div class="form-glow"></div>
+  <img src="img/form-logo.png" alt="" class="form-watermark">
+  <div class="container">
+    <div class="form-inner">
+      <div class="form-left">
+        <div class="form-title">ЗАПИШИТЕСЬ<br>НА ПРОБНУЮ<br>ТРЕНИРОВКУ</div>
+        <p class="form-subtitle">Оставьте заявку — мы свяжемся<br>с вами в течение 15 минут</p>
+        <div class="form-price">от 500 ₽</div>
+      </div>
+      <div class="form-card">
+        <h3>Заполните форму</h3>
+        <input class="form-input" placeholder="Ваше имя">
+        <input class="form-input" placeholder="Телефон">
+        <input class="form-input" placeholder="Email">
+        <select class="form-select" id="studioSelect">
+          <option value="" disabled selected>Выберите студию</option>
+          <option>Москва-Сити</option><option>Фили</option><option>Варшавская</option>
+          <option>Аэропорт</option><option>Митино</option><option>Селигерская</option>
+          <option>Спартак</option><option>Мытищи</option><option>Путилково</option>
+          <option>Отрада</option><option>Молодежная</option><option>Октябрьское поле</option>
+        </select>
+        <button class="form-submit">ОТПРАВИТЬ ЗАЯВКУ</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="img/footer-logo.png" alt="L.A.B SPACE" class="footer-logo">
+        <p>Сеть студий растяжки<br>и фитнеса в Москве</p>
+      </div>
+      <div class="footer-col">
+        <h4>Направления</h4>
+        <ul><li>Йога</li><li>Растяжка</li><li>Aero</li><li>Pilates</li><li>TRX</li><li>Hot Yoga</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Меню</h4>
+        <ul><li><a href="#">Главная</a></li><li><a href="#">Расписание</a></li><li><a href="#trainers">Тренеры</a></li><li><a href="#">Цены</a></li><li><a href="#">Лояльность</a></li><li><a href="#">Блог</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <ul><li>+7 495 419-97-54</li><li>info@labspacefit.ru</li><li>Москва</li></ul>
+      </div>
+      <div class="footer-social">
+        <a href="#">VK</a>
+        <a href="#">Telegram</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2024 L.A.B SPACE. Все права защищены.  |  Политика конфиденциальности</div>
+  </div>
+</footer>
+
+<script>
+// DATA
+const whyData = [
+  {num:"01",title:"Авторские программы",desc:"Уникальные тренировочные методики от топ-специалистов индустрии",icon:"img/icon-01.png"},
+  {num:"02",title:"Топовые тренеры",desc:"МС и КМС с профильным спортивным образованием",icon:"img/icon-02.png"},
+  {num:"03",title:"Мобильное приложение",desc:"Удобная запись и расписание в одном клике",icon:"img/icon-03.png"},
+  {num:"04",title:"Удобное расписание",desc:"Более 16 направлений доступны каждый день",icon:"img/icon-04.png"},
+  {num:"05",title:"Единый абонемент",desc:"Доступ ко всем студиям сети по одной карте",icon:"img/icon-05.png"},
+  {num:"06",title:"Индивидуальный подход",desc:"Персональный план тренировок под ваши цели",icon:"img/icon-06.png"}
+];
+
+const studioPhotos = [
+  "img/studio-1.png","img/studio-2.png","img/studio-3.png","img/studio-4.png",
+  "img/studio-5.png","img/mitino-7.png","img/mitino-8.png"
+];
+
+const studiosData = [
+  {name:"Москва-Сити",addr:"Пресненская наб., 6с2",metro:"Выставочная"},
+  {name:"Фили",addr:"Багратионовский пр., 5",metro:"Фили"},
+  {name:"Варшавская",addr:"Варшавское ш., 9с1",metro:"Варшавская"},
+  {name:"Аэропорт",addr:"Ленинградский пр., 62",metro:"Аэропорт"},
+  {name:"Митино",addr:"Митинская ул., 36к1",metro:"Митино"},
+  {name:"Селигерская",addr:"Коровинское ш., 3",metro:"Селигерская"},
+  {name:"Спартак",addr:"Волоколамское ш., 69",metro:"Спартак"},
+  {name:"Мытищи",addr:"Мира ул., 51",metro:"Мытищи"},
+  {name:"Путилково",addr:"Новотушинская ул., 2",metro:"Путилково"},
+  {name:"Отрада",addr:"Одинцовская ул., 10",metro:"Отрада"},
+  {name:"Молодежная",addr:"Ярцевская ул., 19",metro:"Молодежная"},
+  {name:"Октябрьское поле",addr:"Маршала Бирюзова, 1",metro:"Октябрьское поле"}
+];
+
+const trainersData = [
+  {name:"Анна Соколова",spec:"Йога, Растяжка",desc:"Опыт более 5 лет. МС по художественной гимнастике. Сертифицированный тренер.",photo:"img/trainer-1.png"},
+  {name:"Мария Петрова",spec:"Pilates, Hot Yoga",desc:"Опыт более 5 лет. МС по художественной гимнастике. Сертифицированный тренер.",photo:"img/trainer-2.png"},
+  {name:"Екатерина Иванова",spec:"Aero, TRX",desc:"Опыт более 5 лет. МС по художественной гимнастике. Сертифицированный тренер.",photo:"img/trainer-3.png"},
+  {name:"Дарья Козлова",spec:"Fit Boxing, Табата",desc:"Опыт более 5 лет. МС по художественной гимнастике. Сертифицированный тренер.",photo:"img/trainer-4.png"}
+];
+
+const reviewsData = [
+  {text:"Отличная студия, всегда чисто и приятная доброжелательная атмосфера. Посещаю разные тренировки и всегда удивлена тренерами.",photo:"img/trainer-1.png",name:"Александра К.",date:"25.12.2023"},
+  {text:"Удобное расположение, приятная обстановка. Тренеры на высшем уровне. Рекомендую!",photo:"img/trainer-2.png",name:"Кристина Гвоздева",date:"23.12.2023"},
+  {text:"Много тренировок на выбор, тренеры профессионалы. Вежливый персонал, чисто и уютно.",photo:"img/trainer-3.png",name:"Айгерим Д.",date:"23.12.2023"},
+  {text:"Студия кайф! Занятия вовремя, разнообразные тренировки, никогда не скучно. Близко от метро.",photo:"img/trainer-4.png",name:"Лена",date:"19.12.2023"}
+];
+
+// RENDER WHY
+document.getElementById('whyGrid').innerHTML = whyData.map(w => `
+  <div class="why-card">
+    <div class="why-num">${w.num}</div>
+    <img class="why-icon" src="${w.icon}" alt="">
+    <div class="why-card-title">${w.title}</div>
+    <div class="why-card-desc">${w.desc}</div>
+  </div>
+`).join('');
+
+// RENDER STUDIOS
+const track = document.getElementById('cardsTrack');
+track.innerHTML = studiosData.map((s, i) => `
+  <div class="studio-card">
+    <img class="studio-card-photo" src="${studioPhotos[i % studioPhotos.length]}" alt="${s.name}">
+    <div class="studio-card-info">
+      <div class="studio-card-name">${s.name}</div>
+      <div class="studio-card-addr">${s.addr}</div>
+      <div class="metro-badge">Ⓜ ${s.metro}</div>
+      <div class="studio-sep"></div>
+      <div class="studio-card-btn">Подробнее →</div>
+    </div>
+  </div>
+`).join('');
+
+// RENDER TRAINERS
+document.getElementById('trainersGrid').innerHTML = trainersData.map(t => `
+  <div class="trainer-card">
+    <div class="trainer-avatar"><img src="${t.photo}" alt="${t.name}"></div>
+    <div class="trainer-name">${t.name}</div>
+    <div class="trainer-spec">${t.spec}</div>
+    <div class="trainer-desc">${t.desc}</div>
+    <a href="#form" class="trainer-link">Записаться →</a>
+  </div>
+`).join('');
+
+// RENDER REVIEWS
+document.getElementById('reviewsGrid').innerHTML = reviewsData.map(r => `
+  <div class="review-card">
+    <div class="review-stars">★★★★★</div>
+    <div class="review-text">${r.text}</div>
+    <div class="review-author">
+      <div class="review-avatar"><img src="${r.photo}" alt="${r.name}"></div>
+      <div class="review-author-info">
+        <div class="review-name">${r.name}</div>
+        <div class="review-date">${r.date}</div>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+// CAROUSEL LOGIC
+const cardsPerPage = 4, cardW = 320, totalPages = Math.ceil(studiosData.length / cardsPerPage);
+let currentPage = 0;
+const dotsEl = document.getElementById('carouselDots');
+for(let i=0;i<totalPages;i++){
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = () => goToPage(i);
+  dotsEl.appendChild(d);
+}
+function goToPage(p){
+  currentPage = p;
+  track.style.transform = `translateX(-${p * cardsPerPage * cardW}px)`;
+  document.getElementById('carouselCounter').textContent = `${p+1} / ${totalPages}`;
+  dotsEl.querySelectorAll('.dot').forEach((d,i) => d.className = 'dot' + (i===p?' active':''));
+}
+function slideCarousel(dir){
+  let next = currentPage + dir;
+  if(next < 0) next = totalPages - 1;
+  if(next >= totalPages) next = 0;
+  goToPage(next);
+}
+
+// MENU
+function toggleMenu(){ document.getElementById('mobileMenu').classList.add('open'); }
+function closeMenu(){ document.getElementById('mobileMenu').classList.remove('open'); }
+</script>
+</body>
+</html>

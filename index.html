@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L.A.B SPACE — Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0f; color: #fff; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+  .container { text-align: center; padding: 40px 20px; }
+  h1 { font-size: 2.5rem; margin-bottom: 8px; background: linear-gradient(135deg, #e8336e, #9426af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  p { color: #888; margin-bottom: 40px; font-size: 1.1rem; }
+  .links { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  a { display: block; padding: 20px 40px; border-radius: 12px; text-decoration: none; color: #fff; font-size: 1.1rem; font-weight: 600; transition: transform .2s, box-shadow .2s; }
+  a:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(232,51,110,.3); }
+  .desktop { background: linear-gradient(135deg, #e8336e, #9426af); }
+  .mobile { background: linear-gradient(135deg, #9426af, #4a1dc7); }
+  .studios { background: linear-gradient(135deg, #1a1a2e, #2d2d44); border: 1px solid #333; }
+  .sub { font-size: .85rem; color: rgba(255,255,255,.6); margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>L.A.B SPACE</h1>
+  <p>Фитнес нового формата — превью лендингов</p>
+  <div class="links">
+    <a href="landing.html" class="desktop">
+      Desktop Landing
+      <div class="sub">1440px — полная версия</div>
+    </a>
+    <a href="mobile.html" class="mobile">
+      Mobile Landing
+      <div class="sub">390px — мобильная версия</div>
+    </a>
+    <a href="studios.html" class="studios">
+      Studios
+      <div class="sub">Страница студий</div>
+    </a>
+  </div>
+</div>
+</body>
+</html>

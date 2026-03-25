@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L.A.B SPACE — Наши студии — 5 вариантов</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#111; font-family:'Montserrat',sans-serif; color:#fff; }
+
+.variant-label {
+  text-align:center; padding:60px 0 20px;
+  font-family:'Bebas Neue',sans-serif; font-size:28px;
+  color:#FE0CF6; letter-spacing:2px;
+}
+.variant-label span { color:#666; font-family:'Montserrat',sans-serif; font-size:14px; display:block; margin-top:8px; }
+
+.divider { width:80%; max-width:1200px; margin:0 auto; height:1px; background:linear-gradient(90deg,transparent,#333,transparent); }
+
+/* Common */
+.section { max-width:1440px; margin:0 auto; overflow:hidden; }
+.grad-line { height:3px; width:200px; background:linear-gradient(90deg,#860BC9,#FE0CF6); }
+.btn-grad {
+  display:inline-block; padding:14px 32px; border-radius:30px;
+  background:linear-gradient(90deg,#860BC9,#FE0CF6); color:#fff;
+  font-weight:700; font-size:13px; text-transform:uppercase; cursor:pointer;
+  border:none; text-decoration:none; transition:opacity .2s;
+}
+.btn-grad:hover { opacity:.85; }
+.btn-outline {
+  display:inline-block; padding:13px 32px; border-radius:30px;
+  background:transparent; color:#fff; font-weight:700; font-size:13px;
+  text-transform:uppercase; cursor:pointer; border:2px solid rgba(255,255,255,.4);
+  text-decoration:none; transition:all .2s;
+}
+.btn-outline:hover { border-color:#FE0CF6; color:#FE0CF6; }
+
+.pill {
+  display:inline-block; padding:10px 20px; border-radius:22px;
+  border:1.5px solid #FE0CF6; color:#fff; font-size:13px; font-weight:500;
+  cursor:pointer; transition:all .2s; text-decoration:none;
+}
+.pill:hover { background:rgba(254,12,246,.15); }
+.pill.active { background:linear-gradient(90deg,#860BC9,#FE0CF6); border-color:transparent; }
+
+/* Studio photos */
+.studio-photo {
+  width:100%; height:100%; object-fit:cover; border-radius:16px;
+}
+
+/* ============ V1 Classic Pills ============ */
+.v1 { background:#212226; padding:60px 100px 50px; }
+.v1 h2 { font-family:'Bebas Neue',sans-serif; font-size:36px; text-align:center; line-height:1.15; margin-bottom:40px; }
+.v1 .pills-grid { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:36px; }
+.v1 .buttons { display:flex; gap:16px; margin-bottom:30px; }
+.v1 .map-preview {
+  width:100%; height:240px; border-radius:16px; overflow:hidden; position:relative;
+  background:linear-gradient(135deg,#1a1a2e,#283439);
+}
+.v1 .map-preview img { width:100%; height:100%; object-fit:cover; opacity:.6; }
+.v1 .map-preview .label { position:absolute; top:20px; left:30px; font-size:18px; font-weight:600; }
+
+/* ============ V2 Dropdown + Photos ============ */
+.v2 { background:#1a1a1d; padding:60px 100px 50px; }
+.v2 h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; margin-bottom:4px; }
+.v2 .subtitle { color:#aaa; font-size:16px; margin-bottom:30px; }
+.v2 .content { display:flex; gap:30px; }
+.v2 .left { flex:0 0 400px; }
+.v2 .right { flex:1; display:flex; gap:16px; }
+
+.dropdown {
+  width:100%; padding:16px 20px; border-radius:12px;
+  background:#28292e; border:1px solid rgba(255,255,255,.1);
+  color:#888; font-size:15px; cursor:pointer; position:relative;
+}
+.dropdown::after { content:"▼"; position:absolute; right:20px; top:16px; color:#FE0CF6; font-size:12px; }
+.dropdown-menu {
+  width:100%; border-radius:12px; background:#28292e;
+  border:1px solid rgba(255,255,255,.1); margin-top:4px;
+  max-height:0; overflow:hidden; transition:max-height .3s ease;
+}
+.dropdown-menu.open { max-height:350px; }
+.dropdown-menu .item {
+  padding:8px 20px; font-size:14px; color:rgba(255,255,255,.8);
+  cursor:pointer; transition:background .15s;
+}
+.dropdown-menu .item:hover, .dropdown-menu .item.active {
+  background:rgba(254,12,246,.1); color:#FE0CF6; font-weight:600;
+}
+
+.v2 .photo-card {
+  flex:1; height:300px; border-radius:16px; overflow:hidden; position:relative;
+}
+.v2 .photo-card img { width:100%; height:100%; object-fit:cover; }
+.v2 .photo-card .label {
+  position:absolute; bottom:16px; left:16px; padding:8px 18px;
+  border-radius:18px; background:rgba(0,0,0,.6); font-size:13px; font-weight:600;
+}
+.v2 .buttons { display:flex; gap:16px; margin-top:30px; }
+.v2 .map-strip { width:100%; height:200px; border-radius:12px; overflow:hidden; margin-top:20px; }
+.v2 .map-strip img { width:100%; height:100%; object-fit:cover; opacity:.7; }
+
+/* ============ V3 Map + Pills Split ============ */
+.v3 { background:#212226; padding:60px 100px 50px; }
+.v3 h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; margin-bottom:30px; }
+.v3 .split { display:flex; gap:40px; }
+.v3 .map-side {
+  flex:0 0 600px; height:480px; border-radius:16px; overflow:hidden; position:relative;
+  background:linear-gradient(135deg,#1a1a2e,#283439);
+}
+.v3 .map-side img { width:100%; height:100%; object-fit:cover; }
+.v3 .map-btn { position:absolute; bottom:20px; left:20px; }
+.v3 .pills-side { flex:1; }
+.v3 .search-input {
+  width:100%; padding:16px 20px; border-radius:12px;
+  background:#28292e; border:1px solid rgba(255,255,255,.1);
+  color:#fff; font-size:14px; font-family:'Montserrat',sans-serif;
+  margin-bottom:20px; outline:none;
+}
+.v3 .search-input::placeholder { color:#666; }
+.v3 .pills-compact { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
+.v3 .pill-sm {
+  padding:8px 14px; border-radius:17px; border:1px solid rgba(254,12,246,.5);
+  color:rgba(255,255,255,.7); font-size:12px; font-weight:500; cursor:pointer;
+  transition:all .2s;
+}
+.v3 .pill-sm:hover { border-color:#FE0CF6; color:#fff; background:rgba(254,12,246,.1); }
+.v3 .pill-sm.bright { border-color:#FE0CF6; color:#fff; }
+
+/* ============ V4 Cards Gallery ============ */
+.v4 { background:#141415; padding:60px 100px 50px; }
+.v4 h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; margin-bottom:30px; }
+.v4 .cards { display:flex; gap:20px; margin-bottom:30px; }
+.v4 .card {
+  flex:1; border-radius:16px; background:#28292e; overflow:hidden;
+  transition:transform .2s;
+}
+.v4 .card:hover { transform:translateY(-4px); }
+.v4 .card .photo { height:180px; overflow:hidden; }
+.v4 .card .photo img { width:100%; height:100%; object-fit:cover; transition:transform .3s; }
+.v4 .card:hover .photo img { transform:scale(1.05); }
+.v4 .card .info { padding:20px; }
+.v4 .card .name { font-size:20px; font-weight:700; margin-bottom:6px; }
+.v4 .card .addr { font-size:13px; color:#aaa; margin-bottom:4px; }
+.v4 .card .metro { font-size:13px; color:#FE0CF6; font-weight:500; margin-bottom:16px; }
+.v4 .card .link {
+  display:inline-block; padding:8px 18px; border-radius:18px;
+  background:rgba(254,12,246,.1); border:1px solid rgba(254,12,246,.3);
+  color:#FE0CF6; font-size:12px; font-weight:600; cursor:pointer; transition:all .2s;
+}
+.v4 .card .link:hover { background:rgba(254,12,246,.2); }
+.v4 .bottom { display:flex; align-items:center; gap:16px; }
+.v4 .count { padding:10px 24px; border-radius:24px; background:rgba(254,12,246,.1); font-family:'Bebas Neue',sans-serif; font-size:22px; color:#FE0CF6; }
+
+/* ============ V5 Photo BG + Pills ============ */
+.v5 {
+  padding:60px 100px; position:relative; overflow:hidden;
+  background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+    url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1440&h=600&fit=crop') center/cover;
+}
+.v5::before {
+  content:''; position:absolute; left:-100px; top:50px; width:400px; height:400px;
+  background:radial-gradient(circle,rgba(134,11,201,.3),transparent 70%); filter:blur(80px);
+}
+.v5::after {
+  content:''; position:absolute; right:-50px; top:200px; width:300px; height:300px;
+  background:radial-gradient(circle,rgba(254,12,246,.2),transparent 70%); filter:blur(80px);
+}
+.v5 h2 { font-family:'Bebas Neue',sans-serif; font-size:48px; text-align:center; position:relative; z-index:1; }
+.v5 .subtitle { text-align:center; color:rgba(255,255,255,.7); font-size:16px; margin-bottom:40px; position:relative; z-index:1; }
+.v5 .pills-center { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:40px; position:relative; z-index:1; }
+.v5 .buttons { display:flex; justify-content:center; gap:16px; position:relative; z-index:1; }
+
+/* Animations */
+@keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.animate { animation: fadeIn .5s ease forwards; }
+
+/* Carousel for V1 */
+.carousel-container { position:relative; overflow:hidden; margin-bottom:20px; }
+.carousel-track { display:flex; gap:12px; transition:transform .4s ease; }
+.carousel-track .pill { white-space:nowrap; flex-shrink:0; }
+.carousel-arrow {
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3); display:flex; align-items:center;
+  justify-content:center; cursor:pointer; color:#fff; font-size:20px; z-index:2;
+  transition:background .2s;
+}
+.carousel-arrow:hover { background:rgba(254,12,246,.3); }
+.carousel-arrow.left { left:0; }
+.carousel-arrow.right { right:0; }
+</style>
+</head>
+<body>
+
+<!-- ===== VARIANT 1 ===== -->
+<div class="variant-label">ВАРИАНТ 1 <span>Classic Pills + Карта</span></div>
+<section class="section v1">
+  <h2>L.A.B SPACE — СОВРЕМЕННЫЕ ФИТНЕС-ПРОСТРАНСТВА<br>В ЛУЧШИХ ЛОКАЦИЯХ МОСКВЫ</h2>
+  <div class="pills-grid" id="pills1">
+    <!-- JS fills -->
+  </div>
+  <div class="buttons">
+    <button class="btn-grad" onclick="showAllPills(1)">ПОКАЗАТЬ ВСЕ СТУДИИ</button>
+    <button class="btn-outline" onclick="scrollToMap(1)">ПОКАЗАТЬ НА КАРТЕ</button>
+  </div>
+  <div class="map-preview" id="map1">
+    <img src="https://static-maps.yandex.ru/v1?ll=37.62,55.75&z=10&size=1200,300&l=map&theme=dark&apikey=demo" alt="map" onerror="this.style.display='none'">
+    <div class="label">25+ студий по всей Москве</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== VARIANT 2 ===== -->
+<div class="variant-label">ВАРИАНТ 2 <span>Dropdown + Фото студий</span></div>
+<section class="section v2">
+  <h2>НАШИ СТУДИИ</h2>
+  <div class="grad-line" style="margin-bottom:8px"></div>
+  <p class="subtitle">25+ современных фитнес-пространств в лучших локациях Москвы</p>
+  <div class="content">
+    <div class="left">
+      <div class="dropdown" onclick="toggleDropdown()">Выберите студию</div>
+      <div class="dropdown-menu" id="ddMenu">
+        <!-- JS fills -->
+      </div>
+    </div>
+    <div class="right">
+      <div class="photo-card">
+        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=500&h=300&fit=crop" alt="studio">
+        <div class="label" id="studioLabel">Зал Фили</div>
+      </div>
+      <div class="photo-card" style="flex:0 0 230px">
+        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=250&h=300&fit=crop" alt="studio">
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <button class="btn-grad">ПОКАЗАТЬ ВСЕ ›</button>
+    <button class="btn-outline">ПОКАЗАТЬ НА КАРТЕ ○</button>
+  </div>
+  <div class="map-strip">
+    <img src="https://static-maps.yandex.ru/v1?ll=37.62,55.75&z=10&size=1200,200&l=map&theme=dark&apikey=demo" alt="map" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a1a2e,#283439)'">
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== VARIANT 3 ===== -->
+<div class="variant-label">ВАРИАНТ 3 <span>Карта + Таблетки (Split)</span></div>
+<section class="section v3">
+  <h2>НАШИ СТУДИИ</h2>
+  <div class="split">
+    <div class="map-side">
+      <img src="https://static-maps.yandex.ru/v1?ll=37.62,55.75&z=10&size=600,480&l=map&theme=dark&apikey=demo" alt="map" onerror="this.style.display='none'">
+      <div class="map-btn">
+        <button class="btn-grad" style="font-size:12px; padding:12px 24px;">ОТКРЫТЬ КАРТУ →</button>
+      </div>
+    </div>
+    <div class="pills-side">
+      <input type="text" class="search-input" placeholder="🔍  Найти студию рядом..." id="searchInput" oninput="filterStudios()">
+      <div class="pills-compact" id="pillsCompact">
+        <!-- JS fills -->
+      </div>
+      <button class="btn-grad" style="font-size:12px; padding:10px 24px;">ПОКАЗАТЬ ВСЕ ›</button>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== VARIANT 4 ===== -->
+<div class="variant-label">ВАРИАНТ 4 <span>Карточки студий с фото</span></div>
+<section class="section v4">
+  <h2>НАШИ СТУДИИ</h2>
+  <div class="cards" id="studioCards">
+    <!-- JS fills -->
+  </div>
+  <div class="bottom">
+    <button class="btn-grad">ВСЕ 25+ СТУДИЙ ›</button>
+    <button class="btn-outline">ПОКАЗАТЬ НА КАРТЕ</button>
+    <div style="flex:1"></div>
+    <div class="count">25+</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== VARIANT 5 ===== -->
+<div class="variant-label">ВАРИАНТ 5 <span>Фото-фон + Центрированные таблетки</span></div>
+<section class="section v5">
+  <h2>ВЫБЕРИТЕ СТУДИЮ РЯДОМ С ВАМИ</h2>
+  <p class="subtitle">25+ студий в Москве и Московской области</p>
+  <div class="pills-center" id="pills5">
+    <!-- JS fills -->
+  </div>
+  <div class="buttons">
+    <button class="btn-grad">ПОКАЗАТЬ ВСЕ СТУДИИ</button>
+    <button class="btn-outline">ПОКАЗАТЬ НА КАРТЕ</button>
+  </div>
+</section>
+
+<div style="height:80px"></div>
+
+<script>
+const studios = [
+  "Фили","Варшавская","Аэропорт","Мытищи","Октябрьское поле","Филатов луг",
+  "Москва-Сити","Митино","Селигерская","Спартак","Путилково","Отрада",
+  "Молодежная","Ильинские луга","Стахановская","Отрадное","Аминьевская","Зиларт",
+  "Водный стадион","Озёрная","Трубная","Угрешская","Сити Бэй","Люблинский парк"
+];
+
+const studioData = [
+  {name:"Москва-Сити", addr:"Пресненская наб., 6с2", metro:"Выставочная", img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=200&fit=crop"},
+  {name:"Фили", addr:"Багратионовский пр., 5", metro:"Фили", img:"https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400&h=200&fit=crop"},
+  {name:"Варшавская", addr:"Варшавское ш., 9с1", metro:"Варшавская", img:"https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=200&fit=crop"},
+  {name:"Аэропорт", addr:"Ленинградский пр., 62", metro:"Аэропорт", img:"https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=400&h=200&fit=crop"}
+];
+
+// V1: Pills grid
+const pills1 = document.getElementById('pills1');
+let showAll1 = false;
+function renderPills1() {
+  const count = showAll1 ? studios.length : 12;
+  pills1.innerHTML = studios.slice(0, count).map(s =>
+    `<a class="pill" href="#">${s} ›</a>`
+  ).join('');
+}
+renderPills1();
+
+function showAllPills(v) {
+  showAll1 = !showAll1;
+  renderPills1();
+}
+
+// V2: Dropdown
+const ddMenu = document.getElementById('ddMenu');
+ddMenu.innerHTML = studios.map((s, i) =>
+  `<div class="item${i===0?' active':''}" onclick="selectStudio('${s}')">${s}</div>`
+).join('');
+
+function toggleDropdown() {
+  ddMenu.classList.toggle('open');
+}
+
+function selectStudio(name) {
+  document.querySelector('.dropdown').textContent = name;
+  document.getElementById('studioLabel').textContent = 'Зал ' + name;
+  ddMenu.classList.remove('open');
+  ddMenu.querySelectorAll('.item').forEach(el => {
+    el.classList.toggle('active', el.textContent === name);
+  });
+}
+
+// V3: Compact pills with search
+const pillsCompact = document.getElementById('pillsCompact');
+function renderCompactPills(filter = '') {
+  const filtered = filter ? studios.filter(s => s.toLowerCase().includes(filter.toLowerCase())) : studios;
+  pillsCompact.innerHTML = filtered.map((s, i) =>
+    `<span class="pill-sm${i < 8 ? ' bright' : ''}">${s}</span>`
+  ).join('');
+}
+renderCompactPills();
+
+function filterStudios() {
+  renderCompactPills(document.getElementById('searchInput').value);
+}
+
+// V4: Studio cards
+const cardsEl = document.getElementById('studioCards');
+cardsEl.innerHTML = studioData.map(s => `
+  <div class="card">
+    <div class="photo"><img src="${s.img}" alt="${s.name}"></div>
+    <div class="info">
+      <div class="name">${s.name}</div>
+      <div class="addr">${s.addr}</div>
+      <div class="metro">Ⓜ ${s.metro}</div>
+      <span class="link">Подробнее →</span>
+    </div>
+  </div>
+`).join('');
+
+// V5: Centered pills
+const pills5 = document.getElementById('pills5');
+pills5.innerHTML = studios.map(s =>
+  `<a class="pill" href="#">${s} ›</a>`
+).join('');
+
+// Scroll to map
+function scrollToMap(v) {
+  document.getElementById('map'+v).scrollIntoView({behavior:'smooth'});
+}
+
+// Close dropdown on outside click
+document.addEventListener('click', e => {
+  if (!e.target.closest('.dropdown') && !e.target.closest('.dropdown-menu')) {
+    ddMenu.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L.A.B SPACE — 3 месяца в подарок</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#141415; font-family:'Montserrat',sans-serif; color:#fff; max-width:375px; margin:0 auto; overflow-x:hidden; }
+
+:root {
+  --pink: #FE0CF6;
+  --purple: #860BC9;
+  --grad: linear-gradient(90deg, #860BC9, #FE0CF6);
+  --dark: #141415;
+  --card: #1e1f23;
+  --gray: #999;
+  --light-bg: #f5f5f7;
+  --text-dark: #1a1a1e;
+}
+
+/* NAV */
+.nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 20px; position:sticky; top:0; z-index:100;
+  background:rgba(20,20,21,0.95); backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo img { height:32px; }
+.nav-logo span { color:var(--pink); }
+.burger { width:28px; height:20px; display:flex; flex-direction:column; justify-content:space-between; cursor:pointer; }
+.burger span { display:block; width:100%; height:2px; background:#fff; border-radius:2px; }
+
+/* HERO */
+.hero {
+  padding:40px 20px 50px;
+  background:linear-gradient(180deg, rgba(134,11,201,0.15) 0%, transparent 60%);
+  text-align:center; position:relative; overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute; top:-100px; right:-80px;
+  width:250px; height:250px; border-radius:50%;
+  background:radial-gradient(circle, rgba(254,12,246,0.2), transparent 70%);
+  filter:blur(60px);
+}
+.hero-logo { height:40px; margin:0 auto 20px; display:block; }
+.hero-badge {
+  display:inline-block; padding:6px 16px; border-radius:20px;
+  background:rgba(254,12,246,0.12); border:1px solid rgba(254,12,246,0.3);
+  font-size:11px; font-weight:600; color:var(--pink);
+  text-transform:uppercase; letter-spacing:1px; margin-bottom:24px;
+}
+.hero h1 {
+  font-family:'Bebas Neue',sans-serif; font-size:56px; line-height:0.95;
+  margin-bottom:16px; position:relative;
+}
+.hero h1 .accent { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-sub {
+  font-size:15px; color:var(--gray); line-height:1.5; margin-bottom:32px;
+}
+.hero-buttons { display:flex; flex-direction:column; gap:12px; margin-bottom:40px; }
+.btn-grad {
+  display:block; padding:16px; border-radius:28px; text-align:center;
+  background:var(--grad); color:#fff; font-weight:700; font-size:14px;
+  text-transform:uppercase; border:none; cursor:pointer; letter-spacing:0.5px;
+}
+.btn-outline {
+  display:block; padding:15px; border-radius:28px; text-align:center;
+  background:transparent; color:#fff; font-weight:700; font-size:14px;
+  text-transform:uppercase; border:2px solid rgba(255,255,255,0.3);
+  cursor:pointer; letter-spacing:0.5px;
+}
+.hero-stats {
+  display:flex; justify-content:center; gap:28px;
+}
+.stat { text-align:center; }
+.stat-num { font-family:'Bebas Neue',sans-serif; font-size:32px; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.stat-label { font-size:11px; color:var(--gray); }
+
+/* WHY SECTION */
+.why {
+  padding:50px 20px; background:var(--light-bg);
+}
+.section-title {
+  font-family:'Bebas Neue',sans-serif; font-size:36px; color:var(--text-dark);
+  margin-bottom:6px;
+}
+.section-line { width:80px; height:3px; background:var(--grad); margin-bottom:30px; border-radius:2px; }
+
+.why-cards { display:flex; flex-direction:column; gap:14px; }
+.why-card {
+  background:#fff; border-radius:14px; padding:22px 20px 22px 24px;
+  position:relative; overflow:hidden;
+}
+.why-card::before {
+  content:''; position:absolute; left:0; top:16px; width:4px; height:44px;
+  background:var(--grad); border-radius:0 2px 2px 0;
+}
+.why-num { font-family:'Montserrat',sans-serif; font-size:28px; font-weight:700; color:var(--pink); opacity:0.3; margin-bottom:4px; }
+.why-card-title { font-size:16px; font-weight:700; color:var(--text-dark); margin-bottom:6px; }
+.why-card-desc { font-size:13px; color:#666; line-height:1.5; }
+.why-card-icon {
+  position:absolute; top:16px; right:16px; width:50px; height:50px;
+  opacity:0.15;
+}
+
+/* STUDIOS SECTION */
+.studios { padding:50px 20px; }
+.studios .section-title { color:#fff; }
+
+.studio-gallery {
+  display:flex; flex-direction:column; gap:10px; margin-bottom:30px;
+}
+.gallery-big {
+  width:100%; height:200px; border-radius:16px; overflow:hidden; position:relative;
+}
+.gallery-big img { width:100%; height:100%; object-fit:cover; }
+.gallery-label {
+  position:absolute; bottom:12px; left:12px; padding:6px 14px;
+  border-radius:14px; background:rgba(0,0,0,0.5); font-size:12px; font-weight:600;
+}
+.gallery-row { display:flex; gap:10px; }
+.gallery-small {
+  flex:1; height:120px; border-radius:12px; overflow:hidden; position:relative;
+}
+.gallery-small img { width:100%; height:100%; object-fit:cover; }
+
+.studios-subtitle {
+  font-family:'Bebas Neue',sans-serif; font-size:22px; margin:30px 0 16px;
+}
+
+.cards-carousel {
+  display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
+  padding-bottom:16px; -webkit-overflow-scrolling:touch;
+}
+.cards-carousel::-webkit-scrollbar { display:none; }
+
+.studio-card {
+  flex:0 0 260px; scroll-snap-align:start;
+  background:var(--card); border-radius:16px; overflow:hidden;
+  border:1px solid rgba(255,255,255,0.05);
+}
+.studio-card-photo { width:100%; height:150px; object-fit:cover; }
+.studio-card-info { padding:16px; }
+.studio-card-name { font-size:17px; font-weight:700; margin-bottom:4px; }
+.studio-card-addr { font-size:12px; color:var(--gray); margin-bottom:8px; }
+.metro-badge {
+  display:inline-block; padding:4px 12px; border-radius:12px;
+  background:rgba(254,12,246,0.1); font-size:11px; font-weight:500;
+  color:var(--pink); margin-bottom:14px;
+}
+.studio-card-btn {
+  display:block; width:100%; padding:10px; border-radius:10px; text-align:center;
+  background:rgba(254,12,246,0.08); border:1px solid rgba(254,12,246,0.2);
+  color:var(--pink); font-size:12px; font-weight:600; cursor:pointer;
+}
+
+.carousel-dots { display:flex; justify-content:center; gap:8px; margin:20px 0; }
+.dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); }
+.dot.active { width:24px; border-radius:4px; background:var(--grad); }
+
+.studios-buttons { display:flex; flex-direction:column; gap:10px; }
+
+/* TRAINERS */
+.trainers { padding:50px 20px; background:var(--dark); }
+.trainers .section-title { color:#fff; }
+.trainers-sub { font-size:13px; color:var(--gray); margin-bottom:24px; line-height:1.5; }
+
+.trainers-grid {
+  display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory;
+  padding-bottom:12px; -webkit-overflow-scrolling:touch;
+}
+.trainers-grid::-webkit-scrollbar { display:none; }
+
+.trainer-card {
+  flex:0 0 200px; scroll-snap-align:start;
+  background:var(--card); border-radius:16px; overflow:hidden;
+  border:1px solid rgba(255,255,255,0.05);
+}
+.trainer-photo {
+  width:100%; height:200px; background:linear-gradient(135deg, rgba(134,11,201,0.3), rgba(254,12,246,0.1));
+  display:flex; align-items:center; justify-content:center;
+}
+.trainer-avatar {
+  width:100px; height:100px; border-radius:50%;
+  background:rgba(255,255,255,0.08); border:2px solid rgba(254,12,246,0.3);
+  display:flex; align-items:center; justify-content:center;
+  font-size:36px; color:var(--pink);
+}
+.trainer-info { padding:16px; text-align:center; }
+.trainer-name { font-size:15px; font-weight:700; margin-bottom:2px; }
+.trainer-role { font-size:12px; color:var(--pink); font-weight:500; margin-bottom:6px; }
+.trainer-desc { font-size:11px; color:var(--gray); line-height:1.4; }
+
+/* REVIEWS */
+.reviews {
+  padding:50px 20px; background:var(--light-bg);
+}
+.reviews .section-title { color:var(--text-dark); }
+.reviews-carousel {
+  display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
+  padding-bottom:16px; -webkit-overflow-scrolling:touch;
+}
+.reviews-carousel::-webkit-scrollbar { display:none; }
+.review-card {
+  flex:0 0 280px; scroll-snap-align:start;
+  background:#fff; border-radius:16px; padding:22px 20px;
+  position:relative; overflow:hidden; display:flex; flex-direction:column;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+}
+.review-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:var(--grad);
+}
+.review-stars { font-size:14px; color:var(--pink); margin-bottom:12px; letter-spacing:2px; }
+.review-text { font-size:13px; color:#333; line-height:1.6; margin-bottom:18px; flex:1; }
+.review-author { display:flex; align-items:center; gap:12px; margin-top:auto; }
+.review-avatar {
+  width:40px; height:40px; border-radius:50%; overflow:hidden;
+  flex-shrink:0; border:2px solid var(--pink);
+  background:var(--grad); display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700; color:#fff;
+}
+.review-avatar img { width:100%; height:100%; object-fit:cover; }
+.review-author-info { display:flex; flex-direction:column; }
+.review-name { font-size:13px; font-weight:600; color:var(--text-dark); }
+.review-date { font-size:11px; color:#888; }
+.review-dots { display:flex; justify-content:center; gap:8px; margin-top:16px; }
+.review-dot { width:8px; height:8px; border-radius:50%; background:rgba(26,26,30,0.15); }
+.review-dot.active { width:24px; border-radius:4px; background:var(--grad); }
+
+/* FORM */
+.form-section {
+  padding:50px 20px; position:relative; overflow:hidden;
+  background:linear-gradient(135deg, rgba(134,11,201,0.15), rgba(20,20,21,1) 60%);
+}
+.form-section::before {
+  content:''; position:absolute; top:0; left:-50px; width:200px; height:200px;
+  background:radial-gradient(circle, rgba(254,12,246,0.15), transparent 70%);
+  filter:blur(60px);
+}
+.form-title {
+  font-family:'Bebas Neue',sans-serif; font-size:34px; line-height:1;
+  margin-bottom:12px; position:relative;
+}
+.form-sub { font-size:13px; color:var(--gray); line-height:1.5; margin-bottom:8px; position:relative; }
+.form-price {
+  font-family:'Bebas Neue',sans-serif; font-size:36px;
+  background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  margin-bottom:28px; position:relative;
+}
+
+.form-card {
+  background:var(--card); border-radius:20px; padding:28px 20px;
+  border:1px solid rgba(255,255,255,0.06); position:relative;
+}
+.form-input {
+  width:100%; padding:14px 16px; border-radius:12px; margin-bottom:12px;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+  color:#fff; font-size:14px; font-family:'Montserrat',sans-serif;
+  outline:none; transition:border-color 0.2s;
+}
+.form-input:focus { border-color:var(--pink); }
+.form-input::placeholder { color:#666; }
+.form-submit {
+  width:100%; padding:16px; border-radius:28px; margin-top:8px;
+  background:var(--grad); color:#fff; font-weight:700; font-size:14px;
+  text-transform:uppercase; border:none; cursor:pointer; letter-spacing:0.5px;
+}
+.form-note { font-size:11px; color:#555; text-align:center; margin-top:14px; }
+
+/* FOOTER */
+.footer {
+  padding:36px 20px 28px; text-align:center;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.footer-logo { margin-bottom:12px; }
+.footer-logo img { height:24px; margin:0 auto; }
+.footer-links { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-bottom:16px; }
+.footer-links a { color:var(--gray); font-size:12px; text-decoration:none; }
+.footer-copy { font-size:11px; color:#555; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo"><img src="photos/logo1.png" alt="L.A.B SPACE"></div>
+  <div class="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-logo" src="photos/logo2.png" alt="L.A.B SPACE">
+  <div class="hero-badge">Акция</div>
+  <h1><span class="accent">3 МЕСЯЦА</span><br>В ПОДАРОК</h1>
+  <p class="hero-sub">При покупке абонемента<br>на 12 месяцев</p>
+  <div class="hero-buttons">
+    <button class="btn-grad">Записаться на пробное</button>
+    <button class="btn-outline">Купить абонемент</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">25+</div><div class="stat-label">студий</div></div>
+    <div class="stat"><div class="stat-num">16+</div><div class="stat-label">направлений</div></div>
+    <div class="stat"><div class="stat-num">100+</div><div class="stat-label">тренеров</div></div>
+  </div>
+</section>
+
+<!-- WHY LAB SPACE -->
+<section class="why">
+  <div class="section-title">ПОЧЕМУ L.A.B SPACE</div>
+  <div class="section-line"></div>
+  <div class="why-cards">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-card-title">Авторские программы</div>
+      <div class="why-card-desc">Уникальные тренировочные методики от топ-специалистов индустрии</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-card-title">Топовые тренеры</div>
+      <div class="why-card-desc">МС и КМС с профильным спортивным образованием</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-card-title">Мобильное приложение</div>
+      <div class="why-card-desc">Удобная запись и расписание в одном клике</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <div class="why-card-title">Удобное расписание</div>
+      <div class="why-card-desc">Более 16 направлений доступны каждый день</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">05</div>
+      <div class="why-card-title">Единый абонемент</div>
+      <div class="why-card-desc">Доступ ко всем студиям сети по одной карте</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">06</div>
+      <div class="why-card-title">Индивидуальный подход</div>
+      <div class="why-card-desc">Персональный план тренировок под ваши цели</div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIOS -->
+<section class="studios">
+  <div class="section-title">НАШИ СТУДИИ</div>
+  <div class="section-line"></div>
+
+  <div class="studio-gallery">
+    <div class="gallery-big">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop" alt="Зал тренировок">
+      <div class="gallery-label">Зал тренировок</div>
+    </div>
+    <div class="gallery-row">
+      <div class="gallery-small">
+        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=300&h=200&fit=crop" alt="Кардио зона">
+        <div class="gallery-label">Кардио зона</div>
+      </div>
+      <div class="gallery-small">
+        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=300&h=200&fit=crop" alt="Зона растяжки">
+        <div class="gallery-label">Зона растяжки</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="studios-subtitle">ВЫБЕРИТЕ БЛИЖАЙШУЮ СТУДИЮ</div>
+
+  <div class="cards-carousel" id="studioCarousel">
+  </div>
+
+  <div class="carousel-dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <div class="studios-buttons">
+    <button class="btn-grad">Все 25+ студий</button>
+    <button class="btn-outline">Показать на карте</button>
+  </div>
+</section>
+
+<!-- TRAINERS -->
+<section class="trainers">
+  <div class="section-title">НАША КОМАНДА</div>
+  <div class="section-line"></div>
+  <p class="trainers-sub">Квалифицированные тренеры с МС / КМС и профильным образованием</p>
+
+  <div class="trainers-grid" id="trainersGrid">
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="section-title">ОТЗЫВЫ КЛИЕНТОВ</div>
+  <div class="section-line"></div>
+  <div class="reviews-carousel" id="reviewsCarousel"></div>
+  <div class="review-dots" id="reviewDots"></div>
+</section>
+
+<!-- FORM -->
+<section class="form-section">
+  <div class="form-title">ЗАПИШИТЕСЬ<br>НА ПРОБНУЮ<br>ТРЕНИРОВКУ</div>
+  <p class="form-sub">Оставьте заявку — мы свяжемся с вами в течение 15 минут</p>
+  <div class="form-price">от 500 ₽</div>
+
+  <div class="form-card">
+    <input class="form-input" type="text" placeholder="Ваше имя">
+    <input class="form-input" type="tel" placeholder="Телефон">
+    <select class="form-input" style="appearance:none;">
+      <option value="" disabled selected>Выберите студию</option>
+      <option>Москва-Сити</option>
+      <option>Фили</option>
+      <option>Варшавская</option>
+      <option>Аэропорт</option>
+      <option>Митино</option>
+    </select>
+    <button class="form-submit">Записаться</button>
+    <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo"><img src="photos/logo3.png" alt="L.A.B SPACE"></div>
+  <div class="footer-links">
+    <a href="#">Студии</a>
+    <a href="#">Направления</a>
+    <a href="#">Расписание</a>
+    <a href="#">Тренеры</a>
+    <a href="#">Контакты</a>
+  </div>
+  <div class="footer-copy">© 2026 L.A.B SPACE. Все права защищены.</div>
+</footer>
+
+<script>
+// Studio cards data
+const studios = [
+  {name:"Москва-Сити", addr:"Пресненская наб., 6с2", metro:"Выставочная", img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=250&fit=crop"},
+  {name:"Фили", addr:"Багратионовский пр., 5", metro:"Фили", img:"https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400&h=250&fit=crop"},
+  {name:"Варшавская", addr:"Варшавское ш., 9с1", metro:"Варшавская", img:"https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=250&fit=crop"},
+  {name:"Аэропорт", addr:"Ленинградский пр., 62", metro:"Аэропорт", img:"https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=400&h=250&fit=crop"},
+  {name:"Митино", addr:"Митинская ул., 36к1", metro:"Митино", img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=250&fit=crop"},
+  {name:"Селигерская", addr:"Коровинское ш., 3", metro:"Селигерская", img:"https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400&h=250&fit=crop"},
+  {name:"Спартак", addr:"Волоколамское ш., 69", metro:"Спартак", img:"https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=250&fit=crop"},
+  {name:"Мытищи", addr:"Мира ул., 51", metro:"Мытищи", img:"https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=400&h=250&fit=crop"}
+];
+
+const carousel = document.getElementById('studioCarousel');
+carousel.innerHTML = studios.map(s => `
+  <div class="studio-card">
+    <img class="studio-card-photo" src="${s.img}" alt="${s.name}">
+    <div class="studio-card-info">
+      <div class="studio-card-name">${s.name}</div>
+      <div class="studio-card-addr">${s.addr}</div>
+      <div class="metro-badge">Ⓜ ${s.metro}</div>
+      <div class="studio-card-btn">Подробнее →</div>
+    </div>
+  </div>
+`).join('');
+
+// Trainers data
+const trainers = [
+  {name:"Александр", role:"Силовой тренинг", desc:"МС по пауэрлифтингу, 8 лет опыта"},
+  {name:"Мария", role:"Йога и растяжка", desc:"Сертифицированный инструктор, 6 лет"},
+  {name:"Дмитрий", role:"Функциональный тренинг", desc:"КМС, персональный тренер"},
+  {name:"Елена", role:"Групповые программы", desc:"Фитнес-эксперт, 10 лет опыта"}
+];
+
+const grid = document.getElementById('trainersGrid');
+grid.innerHTML = trainers.map(t => `
+  <div class="trainer-card">
+    <div class="trainer-photo">
+      <div class="trainer-avatar">${t.name[0]}</div>
+    </div>
+    <div class="trainer-info">
+      <div class="trainer-name">${t.name}</div>
+      <div class="trainer-role">${t.role}</div>
+      <div class="trainer-desc">${t.desc}</div>
+    </div>
+  </div>
+`).join('');
+
+// Reviews data
+const reviews = [
+  {text:"Отличная студия, всегда чисто и приятная доброжелательная атмосфера. Посещаю разные тренировки и всегда удивлена тренерами.", name:"Александра К.", date:"25.12.2023", photo:"img/trainer-1.png"},
+  {text:"Удобное расположение, приятная обстановка. Тренеры на высшем уровне. Рекомендую!", name:"Кристина Г.", date:"23.12.2023", photo:"img/trainer-2.png"},
+  {text:"Много тренировок на выбор, тренеры профессионалы. Вежливый персонал, чисто и уютно.", name:"Айгерим Д.", date:"23.12.2023", photo:"img/trainer-3.png"},
+  {text:"Студия кайф! Занятия вовремя, разнообразные тренировки, никогда не скучно. Близко от метро.", name:"Лена", date:"19.12.2023", photo:"img/trainer-4.png"},
+  {text:"Хожу уже полгода — результат заметный. Тренеры подбирают нагрузку индивидуально, это огромный плюс!", name:"Марина С.", date:"15.12.2023", photo:""},
+  {text:"Лучшая фитнес-студия в Москве! Современное оборудование, классные программы и очень удобное приложение.", name:"Дарья В.", date:"10.12.2023", photo:""}
+];
+
+const reviewsEl = document.getElementById('reviewsCarousel');
+reviewsEl.innerHTML = reviews.map(r => `
+  <div class="review-card">
+    <div class="review-stars">★★★★★</div>
+    <div class="review-text">${r.text}</div>
+    <div class="review-author">
+      <div class="review-avatar">${r.photo ? `<img src="${r.photo}" alt="${r.name}">` : r.name[0]}</div>
+      <div class="review-author-info">
+        <div class="review-name">${r.name}</div>
+        <div class="review-date">${r.date}</div>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+// Review dots
+const reviewDotsEl = document.getElementById('reviewDots');
+const reviewCount = reviews.length;
+for(let i=0;i<Math.ceil(reviewCount/2);i++){
+  const d = document.createElement('div');
+  d.className = 'review-dot' + (i===0?' active':'');
+  reviewDotsEl.appendChild(d);
+}
+reviewsEl.addEventListener('scroll', () => {
+  const p = Math.round(reviewsEl.scrollLeft / (294 * 2));
+  reviewDotsEl.querySelectorAll('.review-dot').forEach((d,i) => d.classList.toggle('active', i===p));
+});
+
+// Carousel scroll dots
+const carouselEl = document.getElementById('studioCarousel');
+const dots = document.querySelectorAll('.dot');
+carouselEl.addEventListener('scroll', () => {
+  const scrollPos = carouselEl.scrollLeft;
+  const cardWidth = 274;
+  const page = Math.round(scrollPos / (cardWidth * 3));
+  dots.forEach((d, i) => d.classList.toggle('active', i === page));
+});
+</script>
+</body>
+</html>
