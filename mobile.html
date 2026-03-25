@@ -179,8 +179,10 @@ body { background:#141415; font-family:'Montserrat',sans-serif; color:#fff; max-
   border:1px solid rgba(255,255,255,0.05);
 }
 .trainer-photo {
-  width:100%; height:200px; background:linear-gradient(135deg, rgba(134,11,201,0.3), rgba(254,12,246,0.1));
-  display:flex; align-items:center; justify-content:center;
+  width:100%; height:220px; overflow:hidden;
+}
+.trainer-photo img {
+  width:100%; height:100%; object-fit:cover;
 }
 .trainer-avatar {
   width:100px; height:100px; border-radius:50%;
@@ -352,16 +354,16 @@ body { background:#141415; font-family:'Montserrat',sans-serif; color:#fff; max-
 
   <div class="studio-gallery">
     <div class="gallery-big">
-      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop" alt="Зал тренировок">
+      <img src="img/studio-1.png" alt="Зал тренировок">
       <div class="gallery-label">Зал тренировок</div>
     </div>
     <div class="gallery-row">
       <div class="gallery-small">
-        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=300&h=200&fit=crop" alt="Кардио зона">
+        <img src="img/studio-2.png" alt="Кардио зона">
         <div class="gallery-label">Кардио зона</div>
       </div>
       <div class="gallery-small">
-        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=300&h=200&fit=crop" alt="Зона растяжки">
+        <img src="img/studio-3.png" alt="Зона растяжки">
         <div class="gallery-label">Зона растяжки</div>
       </div>
     </div>
@@ -440,14 +442,14 @@ body { background:#141415; font-family:'Montserrat',sans-serif; color:#fff; max-
 <script>
 // Studio cards data
 const studios = [
-  {name:"Москва-Сити", addr:"Пресненская наб., 6с2", metro:"Выставочная", img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=250&fit=crop"},
-  {name:"Фили", addr:"Багратионовский пр., 5", metro:"Фили", img:"https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400&h=250&fit=crop"},
-  {name:"Варшавская", addr:"Варшавское ш., 9с1", metro:"Варшавская", img:"https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=250&fit=crop"},
-  {name:"Аэропорт", addr:"Ленинградский пр., 62", metro:"Аэропорт", img:"https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=400&h=250&fit=crop"},
-  {name:"Митино", addr:"Митинская ул., 36к1", metro:"Митино", img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=250&fit=crop"},
-  {name:"Селигерская", addr:"Коровинское ш., 3", metro:"Селигерская", img:"https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400&h=250&fit=crop"},
-  {name:"Спартак", addr:"Волоколамское ш., 69", metro:"Спартак", img:"https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=250&fit=crop"},
-  {name:"Мытищи", addr:"Мира ул., 51", metro:"Мытищи", img:"https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=400&h=250&fit=crop"}
+  {name:"Москва-Сити", addr:"Пресненская наб., 6с2", metro:"Выставочная", img:"img/studio-1.png"},
+  {name:"Фили", addr:"Багратионовский пр., 5", metro:"Фили", img:"img/studio-2.png"},
+  {name:"Варшавская", addr:"Варшавское ш., 9с1", metro:"Варшавская", img:"img/studio-3.png"},
+  {name:"Аэропорт", addr:"Ленинградский пр., 62", metro:"Аэропорт", img:"img/studio-4.png"},
+  {name:"Митино", addr:"Митинская ул., 36к1", metro:"Митино", img:"img/studio-5.png"},
+  {name:"Селигерская", addr:"Коровинское ш., 3", metro:"Селигерская", img:"img/studio-1.png"},
+  {name:"Спартак", addr:"Волоколамское ш., 69", metro:"Спартак", img:"img/studio-2.png"},
+  {name:"Мытищи", addr:"Мира ул., 51", metro:"Мытищи", img:"img/studio-3.png"}
 ];
 
 const carousel = document.getElementById('studioCarousel');
@@ -465,17 +467,17 @@ carousel.innerHTML = studios.map(s => `
 
 // Trainers data
 const trainers = [
-  {name:"Александр", role:"Силовой тренинг", desc:"МС по пауэрлифтингу, 8 лет опыта"},
-  {name:"Мария", role:"Йога и растяжка", desc:"Сертифицированный инструктор, 6 лет"},
-  {name:"Дмитрий", role:"Функциональный тренинг", desc:"КМС, персональный тренер"},
-  {name:"Елена", role:"Групповые программы", desc:"Фитнес-эксперт, 10 лет опыта"}
+  {name:"Александр", role:"Силовой тренинг", desc:"МС по пауэрлифтингу, 8 лет опыта", photo:"img/trainer-1.png"},
+  {name:"Мария", role:"Йога и растяжка", desc:"Сертифицированный инструктор, 6 лет", photo:"img/trainer-2.png"},
+  {name:"Дмитрий", role:"Функциональный тренинг", desc:"КМС, персональный тренер", photo:"img/trainer-3.png"},
+  {name:"Елена", role:"Групповые программы", desc:"Фитнес-эксперт, 10 лет опыта", photo:"img/trainer-4.png"}
 ];
 
 const grid = document.getElementById('trainersGrid');
 grid.innerHTML = trainers.map(t => `
   <div class="trainer-card">
     <div class="trainer-photo">
-      <div class="trainer-avatar">${t.name[0]}</div>
+      <img src="${t.photo}" alt="${t.name}">
     </div>
     <div class="trainer-info">
       <div class="trainer-name">${t.name}</div>
@@ -523,14 +525,29 @@ reviewsEl.addEventListener('scroll', () => {
   reviewDotsEl.querySelectorAll('.review-dot').forEach((d,i) => d.classList.toggle('active', i===p));
 });
 
-// Carousel scroll dots
+// Carousel scroll dots — studios
 const carouselEl = document.getElementById('studioCarousel');
-const dots = document.querySelectorAll('.dot');
+const dots = document.querySelectorAll('.carousel-dots .dot');
 carouselEl.addEventListener('scroll', () => {
-  const scrollPos = carouselEl.scrollLeft;
-  const cardWidth = 274;
-  const page = Math.round(scrollPos / (cardWidth * 3));
-  dots.forEach((d, i) => d.classList.toggle('active', i === page));
+  const idx = Math.round(carouselEl.scrollLeft / 274);
+  const page = Math.min(Math.floor(idx / 3), dots.length - 1);
+  dots.forEach((d, i) => { d.classList.remove('active'); if (i === page) d.classList.add('active'); });
+});
+
+// Add trainer carousel dots
+const trainersEl = document.getElementById('trainersGrid');
+const trainerDotsContainer = document.createElement('div');
+trainerDotsContainer.className = 'carousel-dots';
+for (let i = 0; i < Math.ceil(trainers.length / 2); i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  trainerDotsContainer.appendChild(d);
+}
+trainersEl.parentNode.appendChild(trainerDotsContainer);
+trainersEl.addEventListener('scroll', () => {
+  const idx = Math.round(trainersEl.scrollLeft / 212);
+  const page = Math.min(Math.floor(idx / 2), trainerDotsContainer.children.length - 1);
+  Array.from(trainerDotsContainer.children).forEach((d, i) => { d.classList.remove('active'); if (i === page) d.classList.add('active'); });
 });
 </script>
 </body>
